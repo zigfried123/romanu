@@ -107,8 +107,8 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
             ?>
 
-            <option <?= $selected ?> value='<?= mb_substr($key,0, 300) ?>'>
-                <?= mb_substr($val['value'], 0, 300); ?>
+            <option <?= $selected ?> value='<?= mb_substr($key,0, 100) ?>'>
+                <?= mb_substr($val['value'], 0, 100); ?>
             </option>
         <?php } ?>
     </select><br>
@@ -222,7 +222,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
                     $('form#main-form').append('<span>'+Object.keys(v)[0]+'</span><br>');
 
-                    $('form#main-form').append('<input type="checkbox"><select style="width:1200px" id="'+i+'"></select><br>');
+                    $('form#main-form').append('<input type="checkbox"><select style="width:500px" id="'+i+'"></select><br>');
 
                    // console.log(v);
 
