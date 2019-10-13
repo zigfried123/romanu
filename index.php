@@ -11,7 +11,7 @@ $spreadsheet = new Spreadsheet();
 $inputFileName = './files/file.xlsx';
 
 
-if(!empty($_FILES)){
+if(!empty($_FILES['f'])){
 
     $uploaddir = './files/';
     $uploadfile = $uploaddir . 'file.xlsx';
@@ -120,7 +120,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
 ?>
 
-<form>
+<form method="post" id="main-form">
 
     <?php
 
@@ -253,13 +253,13 @@ $objWriter->save('doc.docx');
 
         $.ajax({
             url: 'ajax.php',
-            data: {form: $('form').serializeArray(), ajax: true},
+            data: {form: $('form#main-form').serializeArray(), ajax: true},
             dataType: 'json',
             success: function (data) {
 
                 //console.log(data);
 
-                $('form').empty();
+                $('form#main-form').empty();
 
                 //$('')
 
@@ -272,9 +272,9 @@ $objWriter->save('doc.docx');
 
                    // console.log(Object.keys(v)[0]);
 
-                    $('form').append('<span>'+Object.keys(v)[0]+'</span><br>');
+                    $('form#main-form').append('<span>'+Object.keys(v)[0]+'</span><br>');
 
-                    $('form').append('<select id="'+i+'"></select><br>');
+                    $('form#main-form').append('<select id="'+i+'"></select><br>');
 
                     console.log(v);
 
