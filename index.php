@@ -13,24 +13,21 @@ $inputFileName = './files/file.xlsx';
 
 if(!empty($_FILES)){
 
-     var_dump($_SERVER['REQUEST_URI']);
-     die;
-
-    $uploaddir = '/home/p/portmoneru/zvon-monety.ru/public_html/web/romanu/files/';
+    $uploaddir = './files/';
     $uploadfile = $uploaddir . 'file.xlsx';
 
     //move_uploaded_file($_FILES['f']['tmp_name'], $uploadfile);
 
 
-    echo '<pre>';
+   // echo '<pre>';
     if (move_uploaded_file($_FILES['f']['tmp_name'], $uploadfile)) {
-        echo "Файл корректен и был успешно загружен.\n";
+       // echo "Файл корректен и был успешно загружен.\n";
     } else {
-        echo "Возможная атака с помощью файловой загрузки!\n";
+       // echo "Возможная атака с помощью файловой загрузки!\n";
     }
 
 
-    //header('Location: /');
+    header('Location: /');
 
 }
 
