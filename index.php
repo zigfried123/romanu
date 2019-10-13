@@ -27,7 +27,7 @@ if(!empty($_FILES)){
     }
 
 
-    header('Location: /');
+    //header('Location: /');
 
 }
 
