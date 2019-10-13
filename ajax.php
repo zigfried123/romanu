@@ -113,7 +113,7 @@ $getAnotherValues = function ($listIndex, $cellIndex, $listData) use ($spreadshe
 
                 $index = Object::getIndex($colName);
 
-                if ($colName == 'Наименование' && $j == $rowIndex && $rowIndex != 1) {
+                if ($colName == 'Наименование' && $j == $rowIndex && $sheet->getCellByColumnAndRow($i, $rowIndex - 1)->getValue() != 'Наименование') {
                     $listData[$index][$colName][$j] = $sheet->getCellByColumnAndRow($i, $rowIndex - 1)->getValue();
 
 
