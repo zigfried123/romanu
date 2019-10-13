@@ -14,6 +14,7 @@ $inputFileName = './files/file.xlsx';
 if(!empty($_FILES)){
 
      var_dump($_FILES);
+     die;
 
     $uploaddir = 'C:\OSPanel\domains\roman\files\\';
     $uploadfile = $uploaddir . 'file.xlsx';
@@ -29,7 +30,7 @@ if(!empty($_FILES)){
     }
     */
 
-    header('Location: /');
+    //header('Location: /');
 
 }
 
