@@ -32,7 +32,7 @@ if(!empty($_FILES)){
 }
 
 
-try {
+
 
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
 
@@ -153,9 +153,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
     <button onclick="window.location.reload();">сброс</button>
 
     <?php
-}catch(Exception $e) {
-    
-}
+
 
 ?>
 
