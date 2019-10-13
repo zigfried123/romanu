@@ -59,6 +59,10 @@ $getAnotherValues = function ($listIndex, $cellIndex, $listData) use ($spreadshe
 
     if ($colName == 'Наименование') {
 
+        $index = Object::getIndex($colName);
+
+        $listData[$index][$colName][] = $sheet->getCell($cellIndex)->getValue();
+
         // var_dump( $cellName = $sheet->getCell($cellIndex)->getValue());
 
         for ($j = 1; $j <= 10; $j++) {
@@ -79,10 +83,10 @@ $getAnotherValues = function ($listIndex, $cellIndex, $listData) use ($spreadshe
                     break 2;
                 }
 
-                $index = Object::getIndex($colName);
+
 
                 if ($colName == 'Наименование') {
-                    $listData[$index][$colName][] = $sheet->getCell($cellIndex)->getValue();
+
                 } else if ($cellValue != null) {
 
                     if (is_string($cellValue)) {
