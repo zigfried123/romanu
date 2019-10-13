@@ -107,7 +107,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
             ?>
 
-            <option <?= $selected ?> value='<?= $key ?>'>
+            <option <?= $selected ?> value='<?= mb_substr($key,0, 300) ?>'>
                 <?= mb_substr($val['value'], 0, 300); ?>
             </option>
         <?php } ?>
