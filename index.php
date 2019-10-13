@@ -13,8 +13,8 @@ $inputFileName = './files/file.xlsx';
 
 if(!empty($_FILES)){
 
-     //var_dump($_FILES);
-     //die;
+     var_dump($_FILES);
+     die;
 
     $uploaddir = '/home/p/portmoneru/zvon-monety.ru/public_html/web/romanu/files/';
     $uploadfile = $uploaddir . 'file.xlsx';
