@@ -148,7 +148,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
     </form>
 
     <br>
-    <button type="submit">Отправить</button><br><br>
+
 
     <button onclick="window.location.reload();">сброс</button>
 
@@ -159,7 +159,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
 <form enctype="multipart/form-data" method="post">
     <p><input type="file" name="f">
-        <input type="submit" value="Отправить"></p>
+        <input type="submit" value="Загрузить"></p>
 </form>
 
 <?php
@@ -180,63 +180,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
 /*
 
-$phpWord = new  \PhpOffice\PhpWord\PhpWord();
 
-$phpWord->setDefaultFontName('Times New Roman');
-
-$phpWord->setDefaultFontSize(14);
-
-$properties = $phpWord->getDocInfo();
-
-$properties->setCreator('Name');
-$properties->setCompany('Company');
-$properties->setTitle('Title');
-$properties->setDescription('Description');
-$properties->setCategory('My category');
-$properties->setLastModifiedBy('My name');
-$properties->setCreated(mktime(0, 0, 0, 3, 12, 2015));
-$properties->setModified(mktime(0, 0, 0, 3, 14, 2015));
-$properties->setSubject('My subject');
-$properties->setKeywords('my, key, word');
-
-
-$sectionStyle = array(
-
-    'orientation' => 'landscape',
-    'marginTop' => \PhpOffice\PhpWord\Shared\Converter::pixelToTwip(10),
-    'marginLeft' => 600,
-    'marginRight' => 600,
-    'colsNum' => 1,
-    'pageNumberingStart' => 1,
-    'borderBottomSize'=>100,
-    'borderBottomColor'=>'C0C0C0'
-
-);
-$section = $phpWord->addSection($sectionStyle);
-
-$sectionStyle = array(
-
-    'orientation' => 'landscape',
-    'marginTop' => \PhpOffice\PhpWord\Shared\Converter::pixelToTwip(10),
-    'marginLeft' => 600,
-    'marginRight' => 600,
-    'colsNum' => 1,
-    'pageNumberingStart' => 1,
-    'borderBottomSize'=>100,
-    'borderBottomColor'=>'C0C0C0'
-
-);
-$section = $phpWord->addSection($sectionStyle);
-
-$text = "PHPWord is a library written in pure PHP that provides a set of classes to write to and read from different document file formats.";
-$fontStyle = array('name'=>'Arial', 'size'=>36, 'color'=>'075776', 'bold'=>TRUE, 'italic'=>TRUE);
-$parStyle = array('align'=>'right','spaceBefore'=>10);
-
-$section->addText(htmlspecialchars($text), $fontStyle,$parStyle);
-
-
-$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord,'Word2007');
-$objWriter->save('doc.docx');
 
 */
 
@@ -250,6 +194,10 @@ $objWriter->save('doc.docx');
 
 
     $('select').change(function () {
+
+       // console.log($('form#main-form'));
+
+     //   console.log($('form#main-form').serializeArray());
 
         $.ajax({
             url: 'ajax.php',
@@ -274,9 +222,9 @@ $objWriter->save('doc.docx');
 
                     $('form#main-form').append('<span>'+Object.keys(v)[0]+'</span><br>');
 
-                    $('form#main-form').append('<select id="'+i+'"></select><br>');
+                    $('form#main-form').append('<input type="checkbox"><select style="width:1200px" id="'+i+'"></select><br>');
 
-                    console.log(v);
+                   // console.log(v);
 
 
 
@@ -294,6 +242,35 @@ $objWriter->save('doc.docx');
 
                     });
                 });
+
+                $('form#main-form').append('<br><button type="submit">Отправить</button>');
+
+                $('button[type="submit"]').click(function (e){
+                    e.preventDefault();
+
+                    let selects = [];
+
+                    $('input[type="checkbox"]').each(function(k,v){
+
+
+                        if($(v).is(':checked')){
+
+                            selects.push({name:  $(v).prevAll('span').html(), val: $(v).next().val()});
+
+                        }
+
+
+                    });
+
+                    $.post('word.php',{'selects': selects})
+
+                        .done(function(data){
+                           // console.log(data);
+                        })
+
+                })
+
+
 
                 //$('select').option('');
 
