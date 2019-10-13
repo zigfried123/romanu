@@ -232,7 +232,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
                         if(v2 != null && v2 != '') {
 
-                            $('select#'+i).append('<option value="' + v2 + '">' + v2 + '</option>');
+                            $('select#'+i).append('<option value="' + v2.substr(0,50) + '">' + v2.substr(0,50) + '</option>');
 
                         }else{
                           //  $('select#'+i).remove();
