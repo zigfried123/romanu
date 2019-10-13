@@ -82,7 +82,7 @@ $getAnotherValues = function ($listIndex, $cellIndex, $listData) use ($spreadshe
                 $index = Object::getIndex($colName);
 
                 if ($colName == 'Наименование') {
-                    $listData[$index][$colName][0] = $sheet->getCell($cellIndex)->getValue();
+                    $listData[$index][$colName][] = $sheet->getCell($cellIndex)->getValue();
                 } else if ($cellValue != null) {
 
                     if (is_string($cellValue)) {
