@@ -8,10 +8,36 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 $spreadsheet = new Spreadsheet();
 
-$inputFileName = './stu_tb_trc.xlsx';
+$inputFileName = './files/file.xlsx';
 
-/** Load $inputFileName to a Spreadsheet Object  **/
+
+if(!empty($_FILES)){
+
+     var_dump($_FILES);
+
+    $uploaddir = 'C:\OSPanel\domains\roman\files\\';
+    $uploadfile = $uploaddir . 'file.xlsx';
+
+    move_uploaded_file($_FILES['f']['tmp_name'], $uploadfile);
+
+    /*
+    echo '<pre>';
+    if (move_uploaded_file($_FILES['f']['tmp_name'], $uploadfile)) {
+        echo "Файл корректен и был успешно загружен.\n";
+    } else {
+        echo "Возможная атака с помощью файловой загрузки!\n";
+    }
+    */
+
+    header('Location: /');
+
+}
+
+
+try {
+
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+
 
 $sheetCount = $spreadsheet->getSheetCount();
 
@@ -84,7 +110,7 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
             ?>
 
             <option <?= $selected ?> value='<?= $key ?>'>
-                <?= mb_substr($val['value'],0,900); ?>
+                <?= mb_substr($val['value'], 0, 900); ?>
             </option>
         <?php } ?>
     </select><br>
@@ -116,17 +142,32 @@ $renderList = function ($letter, $selectName) use ($sheet, $getListData) {
 
     $renderList('E', 'норматив');
 
+
+
     ?>
 
 
-</form>
+    </form>
 
-<br>
-<button type="submit">Отправить</button><br><br>
+    <br>
+    <button type="submit">Отправить</button><br><br>
 
-<button onclick="window.location.reload();">сброс</button>
+    <button onclick="window.location.reload();">сброс</button>
 
-<?php
+    <?php
+}catch(Exception $e) {
+
+    ?>
+
+    <form enctype="multipart/form-data" method="post">
+        <p><input type="file" name="f">
+            <input type="submit" value="Отправить"></p>
+    </form>
+
+    <?php
+
+}
+
 
 /*
        echo '<tr>' . PHP_EOL;
