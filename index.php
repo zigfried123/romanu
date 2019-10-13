@@ -16,7 +16,7 @@ if(!empty($_FILES)){
      //var_dump($_FILES);
      //die;
 
-    $uploaddir = '/home/p/portmoneru/zvon-monety.ru/public_html/web/romanu/files';
+    $uploaddir = '/home/p/portmoneru/zvon-monety.ru/public_html/web/romanu/files/';
     $uploadfile = $uploaddir . 'file.xlsx';
 
     //move_uploaded_file($_FILES['f']['tmp_name'], $uploadfile);
